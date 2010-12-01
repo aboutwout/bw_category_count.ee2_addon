@@ -6,9 +6,7 @@ Put the ext.bw_category_count.php file in '/system/expressionengine/third_party/
 
 ### Parameters
 
-`show_group [optional]`
-
-The `show_group` parameter allows you to only count a category if it is in a specific category group, much like how the `show_group` parameter on the categories-loop works.
+`show_group [optional]` The show\_group parameter allows you to only count a category if it is in a specific category group, much like how the show\_group parameter on the categories-loop works.
 
     {category_count show_group='1'}
     {category_count show_group='1|3|4'}
