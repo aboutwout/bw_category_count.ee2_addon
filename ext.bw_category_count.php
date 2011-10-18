@@ -20,7 +20,7 @@ class Bw_category_count_ext
   public $settings            = array();
   
   public $name                = 'BW Category Count';
-  public $version             = 1.0;
+  public $version             = 1.1;
   public $description         = "Add a {category_count} variable to the {exp:channel:entries} loop.";
   public $settings_exist      = 'n';
   public $docs_url            = '';
@@ -67,12 +67,21 @@ class Bw_category_count_ext
         // If show_group parameter hasn't been set, skip the next part
         if( isset($params['show_group']) && $params['show_group'])
         {
+
           $cat_count = 0;
+          
+          if ( count($obj->categories) == 0)
+          {
+            $row[$key] = $cat_count;
+            return $row;      
+          }
 
           $not = (strncmp($params['show_group'], 'not', 3) == 0);
           $params['show_group'] = str_replace('not', '', $params['show_group']);
           $groups = explode('|', $params['show_group']);
 
+          if ( ! isset($obj->categories[$row['entry_id']])) continue;
+          
           foreach($obj->categories[$row['entry_id']] as $cat)
           {
 
